@@ -20,13 +20,20 @@ public class BasicTest {
         BatchInfo batch;
         WebDriver driver;
         // Must be before ALL tests (at Class-level)
-        batch = new BatchInfo("TeamCity batch");
+        BatchInfo batchInfo = new BatchInfo("TeamCity Batch");
+// If the test runs via TeamCity, set the batch ID accordingly.
+        String batchId = System.getenv("APPLITOOLS_BATCH_ID");
+        if (batchId != null) {
+            batchInfo.setId(batchId);
+        }
 
         // Initialize the Runner for your test.
         runner = new ClassicRunner();
 
         // Initialize the eyes SDK
         eyes = new Eyes(runner);
+
+        eyes.setBatch(batchInfo);
 
         // Raise an error if no API Key has been found.
         if(isNullOrEmpty(System.getenv("APPLITOOLS_API_KEY"))) {
