@@ -17,10 +17,10 @@ public class BasicTest {
 
         EyesRunner runner;
         Eyes eyes;
-        BatchInfo batch;
+//        BatchInfo batch;
         WebDriver driver;
         // Must be before ALL tests (at Class-level)
-        BatchInfo batchInfo = new BatchInfo("TeamCity Batch");
+        BatchInfo batchInfo = new BatchInfo("Jenkins Batch");
 // If the test runs via TeamCity, set the batch ID accordingly.
         String batchId = System.getenv("APPLITOOLS_BATCH_ID");
         if (batchId != null) {
@@ -44,7 +44,7 @@ public class BasicTest {
         eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
 
         // set batch name
-        eyes.setBatch(batch);
+//        eyes.setBatch(batch);
 
         // Use Chrome browser
         driver = new ChromeDriver();
